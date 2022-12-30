@@ -22,9 +22,14 @@ h1 {
   font-family: "Rammetto One", sans-serif;
 }
 
+.hidden {
+  opacity: 0;
+}
+
 .card {
-  line-height: 5;
-  padding: 5rem;
+  padding: 2rem;
+  width: 100%;
+  font-size: 2rem;
   text-align: center;
   margin: 0.5rem;
   background-image:

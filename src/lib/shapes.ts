@@ -4,7 +4,7 @@ const shapes: string[] = [
   'circle',
   'check',
   'plus',
-  'triangle',
+  'house',
   'square',
   'minus',
 ]

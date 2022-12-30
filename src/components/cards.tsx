@@ -15,8 +15,15 @@ const Cards = function () {
 
   const cardTypes = shuffledCards.map((card, index) => {
     return (
-      <button className='card col-4' id={card} key={index}>
-      </button>)
+      <div key={index}>
+        <button className='front card col-4'>
+          <h1 className="hidden fa-solid fa-question"></h1>
+        </button>
+        <button className='back card col-4' id={card}>
+          <h1 className={`fa-solid fa-${card}`}></h1>
+        </button>
+      </div>
+      )
   })
   return cardTypes;
 }
