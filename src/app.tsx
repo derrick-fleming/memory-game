@@ -1,7 +1,5 @@
 import React from "react"
-
-const cardShapes: string[] = [
-  'heart', 'heart', 'star', 'star', 'circle', 'circle', 'check', 'check', 'minus', 'minus', 'plus', 'plus'];
+import Cards from "./components/cards"
 
 export default function App(){
   return (
@@ -15,11 +13,3 @@ export default function App(){
     </>
   )
 }
-
-const Cards = function() {
-  const cardTypes = cardShapes.map((card, index)=> {
-    return (
-    <button className='card col-4' id={card} key={index}>
-    </button> )})
-  return cardTypes;
-  }
