@@ -19,7 +19,7 @@ export default function App(){
 const Cards = function() {
   const cardTypes = cardShapes.map((card, index)=> {
     return (
-    <div className='card col-4' id={card} key={index}>
-    </div> )})
+    <button className='card col-4' id={card} key={index}>
+    </button> )})
   return cardTypes;
   }

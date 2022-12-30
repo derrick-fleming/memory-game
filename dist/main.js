@@ -33398,7 +33398,7 @@ function App() {
 }
 var Cards = function () {
     var cardTypes = cardShapes.map(function (card, index) {
-        return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: 'card col-4', id: card, key: index }));
+        return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { className: 'card col-4', id: card, key: index }));
     });
     return cardTypes;
 };
