@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import shapes from "../lib/shapes";
 import _ from 'lodash';
 
@@ -12,16 +12,18 @@ shapes.forEach(shape => {
 const shuffledCards = _.shuffle(cardShapes);
 
 const Cards = function () {
-
   const cardTypes = shuffledCards.map((card, index) => {
     return (
-      <div key={index}>
-        <button className='front card col-4'>
-          <h1 className="hidden fa-solid fa-question"></h1>
-        </button>
-        <button className='back card col-4' id={card}>
-          <h1 className={`fa-solid fa-${card}`}></h1>
-        </button>
+      <div className='flip-container' key={index}>
+        <div className='flipper'>
+          <button className='front card'>
+            <h1 className="hidden fa-solid fa-question"></h1>
+          </button>
+          <button className='card back' id={card}>
+            <h1 className={`fa-solid fa-${card}`}></h1>
+          </button>
+        </div>
+
       </div>
       )
   })
