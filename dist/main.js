@@ -33387,10 +33387,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
+var cardShapes = [
+    'heart', 'heart', 'star', 'star', 'circle', 'circle', 'check', 'check', 'minus', 'minus', 'plus', 'plus'
+];
 function App() {
-    return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null,
-        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Hello World!")));
+    return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null,
+        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null,
+            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Memory Challenge")),
+        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: 'row' }, Cards())));
 }
+var Cards = function () {
+    var cardTypes = cardShapes.map(function (card, index) {
+        return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: 'card col-4', id: card, key: index }));
+    });
+    return cardTypes;
+};
 
 
 /***/ })

@@ -1,0 +1,28 @@
+#root {
+  padding: 1rem;
+}
+
+h1 {
+  text-align: center;
+}
+
+.card {
+  line-height: 5;
+  padding: 5rem;
+  text-align: center;
+  margin: 0.5rem;
+  background-image:
+    radial-gradient(
+      circle,
+      #f2c4b3,
+      #f291a3
+    );
+  border-radius: 1rem;
+  box-shadow: 0.2rem 0.2rem 0.5rem #0000004b;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  cursor: pointer;
+  transform: scale(110%);
+}
