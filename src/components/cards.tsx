@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import shapes from "../lib/shapes";
 import _ from 'lodash';
 
@@ -12,19 +12,37 @@ shapes.forEach(shape => {
 const shuffledCards = _.shuffle(cardShapes);
 
 const Cards = function () {
+  const [flippedCount, setFlippedCount] = useState(0);
+
+  function handleFlip(){
+    const count = flippedCount + 1
+    if (count === 2) {
+      setTimeout(()=> {
+        setFlippedCount(0)
+      }, 1000)
+    } else {
+      setFlippedCount(count);
+    }
+  }
 
   const cardTypes = shuffledCards.map((card, index) => {
     return (
-      <div className='flip-container' key={index}>
-        <Card symbol={card}/>
+      <div className='flip-container' key={index} onClick={handleFlip}>
+        <Card symbol={card} count={flippedCount}/>
       </div>
       )
   })
   return cardTypes;
 }
 
-const Card = function(props: {symbol: string}){
+const Card = function(props: {symbol: string, count: number}){
   const [flipClass, setFlipClass] = useState(false);
+
+  useEffect(()=> {
+    if (props.count === 0) {
+      setFlipClass(false)
+    }
+  })
 
   function handleFlip() {
     if (flipClass) {
@@ -33,8 +51,10 @@ const Card = function(props: {symbol: string}){
       setFlipClass(true)
     }
   }
-
-  const flippedClass = flipClass ? 'flipped-card' : '';
+  let flippedClass = flipClass ? 'flipped-card' : '';
+  if (props.count >= 2 || props.count === 0) {
+    flippedClass = '';
+  }
 
   return (
     <div className={`flipper ${flippedClass}`}>
