@@ -72,6 +72,6 @@ h1 {
   transition: transform 0.2s ease;
 }
 
-.flip-container:hover .flipper {
+.flipped-card {
   transform: rotateY(180deg);
 }
