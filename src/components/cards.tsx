@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import shapes from "../lib/shapes";
 import _ from 'lodash';
 
-
 let cardShapes: string[] = [];
 shapes.forEach(shape => {
   cardShapes.push(shape);
@@ -45,12 +44,9 @@ const Card = function(props: {symbol: string, count: number}){
   })
 
   function handleFlip() {
-    if (flipClass) {
-      setFlipClass(false)
-    } else {
       setFlipClass(true)
-    }
   }
+
   let flippedClass = flipClass ? 'flipped-card' : '';
   if (props.count >= 2 || props.count === 0) {
     flippedClass = '';
@@ -67,7 +63,6 @@ const Card = function(props: {symbol: string, count: number}){
     </div>
 
   )
-
 
 }
 

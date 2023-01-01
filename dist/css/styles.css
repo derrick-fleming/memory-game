@@ -49,6 +49,10 @@ h1 {
   z-index: 1;
 }
 
+.front:hover {
+  cursor: pointer;
+}
+
 .back {
   transform: rotateY(180deg);
 }
