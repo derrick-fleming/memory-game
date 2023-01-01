@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import shapes from "../lib/shapes";
 import Card from "./card";
 import _ from 'lodash';
@@ -13,10 +13,16 @@ const shuffledCards = _.shuffle(cardShapes);
 
 const GameBoard = function () {
   const [flippedCount, setFlippedCount] = useState(0);
+  const [firstCard, setFirstCard] = useState('');
 
-  function handleFlip(){
+  function handleFlip(e: SyntheticEvent){
+    if (firstCard === '') {
+      setFirstCard(e.currentTarget.id);
+    }
+
     const count = flippedCount + 1
     if (count === 2) {
+      setFirstCard('');
       setTimeout(()=> {
         setFlippedCount(0)
       }, 1000)
@@ -27,7 +33,7 @@ const GameBoard = function () {
 
   const cardTypes = shuffledCards.map((card, index) => {
     return (
-      <div className='flip-container' key={index} onClick={handleFlip}>
+      <div className='flip-container' key={index} onClick={handleFlip} id={card}>
         <Card symbol={card} count={flippedCount}/>
       </div>
       )
