@@ -3,7 +3,3 @@
   flex-wrap: wrap;
   justify-content: center;
 }
-
-.col-4 {
-  flex-basis: 20%;
-}
