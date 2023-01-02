@@ -14,10 +14,17 @@ const shuffledCards = _.shuffle(cardShapes);
 const GameBoard = function () {
   const [flippedCount, setFlippedCount] = useState(0);
   const [firstCard, setFirstCard] = useState('');
+  const [matched, setMatched] = useState([]);
 
   function handleFlip(e: SyntheticEvent){
     if (firstCard === '') {
       setFirstCard(e.currentTarget.id);
+    }
+
+    if (firstCard === e.currentTarget.id) {
+      const array = matched;
+      array.push(e.currentTarget.id);
+      setMatched(array);
     }
 
     const count = flippedCount + 1
@@ -32,8 +39,13 @@ const GameBoard = function () {
   }
 
   const cardTypes = shuffledCards.map((card, index) => {
+
+    const matchedClass = matched.includes(card)
+      ? 'matched-card'
+      : '';
+
     return (
-      <div className='flip-container' key={index} onClick={handleFlip} id={card}>
+      <div className={`flip-container ${matchedClass}`} key={index} onClick={handleFlip} id={card}>
         <Card symbol={card} count={flippedCount}/>
       </div>
       )

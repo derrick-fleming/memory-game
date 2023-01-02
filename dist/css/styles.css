@@ -79,3 +79,7 @@ h1 {
 .flipped-card {
   transform: rotateY(180deg);
 }
+
+.matched-card {
+  opacity: 0;
+}
