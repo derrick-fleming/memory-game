@@ -17,14 +17,10 @@ const GameBoard = function () {
   const [matched, setMatched] = useState([]);
 
   function handleFlip(e: SyntheticEvent){
-    if (firstCard === '') {
-      setFirstCard(e.currentTarget.id);
-    }
+    const cardId = e.currentTarget.id
 
-    if (firstCard === e.currentTarget.id) {
-      const array = matched;
-      array.push(e.currentTarget.id);
-      setMatched(array);
+    if (firstCard === '') {
+      setFirstCard(cardId);
     }
 
     const count = flippedCount + 1
@@ -32,6 +28,11 @@ const GameBoard = function () {
       setFirstCard('');
       setTimeout(()=> {
         setFlippedCount(0)
+        if (firstCard === cardId) {
+          const array = matched;
+          array.push(cardId);
+          setMatched(array);
+        }
       }, 1000)
     } else {
       setFlippedCount(count);

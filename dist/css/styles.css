@@ -82,4 +82,5 @@ h1 {
 
 .matched-card {
   opacity: 0;
+  transition: opacity 0.5s ease;
 }
