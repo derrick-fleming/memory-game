@@ -20,7 +20,7 @@ for (let i = 0; i < 8; i++) {
 const mediumShuffledCards = _.shuffle(mediumCardShapes);
 
 let hardCardShapes: string[] = [];
-for (let i = 0; i < 12; i++) {
+for (let i = 0; i < 10; i++) {
   hardCardShapes.push(shapes[i]);
   hardCardShapes.push(shapes[i])
 }
@@ -72,9 +72,12 @@ const GameBoard = function (props: {level: string}) {
       : '';
 
     return (
-      <div className={`flip-container ${matchedClass}`} key={index} onClick={handleFlip} id={card}>
-        <Card symbol={card} count={flippedCount}/>
+      <div className="col-4">
+        <div className={`flip-container ${matchedClass}`} key={index} onClick={handleFlip} id={card}>
+          <Card symbol={card} count={flippedCount} />
+        </div>
       </div>
+
       )
   })
 
@@ -93,9 +96,12 @@ const GameBoard = function (props: {level: string}) {
           Number of Guesses: {tries}
         </h3>
       </div>
-      <div className='row'>
-        {cardTypes}
+      <div className="game-board-container">
+        <div className='row'>
+          {cardTypes}
+        </div>
       </div>
+
     </>
   );
 }
