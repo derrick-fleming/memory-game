@@ -49,7 +49,7 @@ h1 {
   z-index: 1;
 }
 
-.front:hover {
+.front:not(.matched-card > .flipper > .front):hover {
   cursor: pointer;
 }
 
@@ -82,5 +82,5 @@ h1 {
 
 .matched-card {
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.2s ease;
 }

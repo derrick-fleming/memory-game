@@ -15,17 +15,23 @@ const GameBoard = function () {
   const [flippedCount, setFlippedCount] = useState(0);
   const [firstCard, setFirstCard] = useState('');
   const [matched, setMatched] = useState([]);
+  const [tries, setTries] = useState(0);
 
   function handleFlip(e: SyntheticEvent){
     const cardId = e.currentTarget.id
-
-    if (firstCard === '') {
+    let count: number;
+    if (firstCard === '' && !matched.includes(cardId)) {
       setFirstCard(cardId);
+       count = flippedCount + 1
+      setFlippedCount(count);
+      return;
+    } else if (!matched.includes(cardId)) {
+       count = flippedCount + 1
     }
 
-    const count = flippedCount + 1
     if (count === 2) {
       setFirstCard('');
+      setTries(tries + 1);
       setTimeout(()=> {
         setFlippedCount(0)
         if (firstCard === cardId) {
@@ -33,9 +39,7 @@ const GameBoard = function () {
           array.push(cardId);
           setMatched(array);
         }
-      }, 1000)
-    } else {
-      setFlippedCount(count);
+      }, 600)
     }
   }
 
@@ -51,6 +55,15 @@ const GameBoard = function () {
       </div>
       )
   })
+
+  if (matched.length === shapes.length) {
+    return (
+      <div>
+        <h1>It took you {tries} guesses with {matched.length} possible matches.</h1>
+        <h1>Your accuracy is: {Math.floor((matched.length / tries) * 100)}%</h1>
+      </div>
+    )
+  }
   return cardTypes;
 }
 
