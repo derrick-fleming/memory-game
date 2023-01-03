@@ -3,15 +3,31 @@ import shapes from "../lib/shapes";
 import Card from "./card";
 import _ from 'lodash';
 
-let cardShapes: string[] = [];
-shapes.forEach(shape => {
-  cardShapes.push(shape);
-  cardShapes.push(shape);
-})
 
-const shuffledCards = _.shuffle(cardShapes);
+let easyCardShapes: string[] = [];
+for (let i = 0; i < 4; i++) {
+  easyCardShapes.push(shapes[i]);
+  easyCardShapes.push(shapes[i]);
+}
+const easyShuffledCards = _.shuffle(easyCardShapes);
 
-const GameBoard = function () {
+let mediumCardShapes: string[] = [];
+for (let i = 0; i < 8; i++) {
+  mediumCardShapes.push(shapes[i]);
+  mediumCardShapes.push(shapes[i]);
+}
+
+const mediumShuffledCards = _.shuffle(mediumCardShapes);
+
+let hardCardShapes: string[] = [];
+for (let i = 0; i < 12; i++) {
+  hardCardShapes.push(shapes[i]);
+  hardCardShapes.push(shapes[i])
+}
+
+const hardShuffledCards = _.shuffle(hardCardShapes)
+
+const GameBoard = function (props: {level: string}) {
   const [flippedCount, setFlippedCount] = useState(0);
   const [firstCard, setFirstCard] = useState('');
   const [matched, setMatched] = useState([]);
@@ -43,6 +59,12 @@ const GameBoard = function () {
     }
   }
 
+  const shuffledCards = props.level === 'easy'
+    ? easyShuffledCards
+    : props.level === 'medium'
+      ? mediumShuffledCards
+      : hardShuffledCards;
+
   const cardTypes = shuffledCards.map((card, index) => {
 
     const matchedClass = matched.includes(card)
@@ -56,7 +78,7 @@ const GameBoard = function () {
       )
   })
 
-  if (matched.length === shapes.length) {
+  if (matched.length === shuffledCards.length / 2) {
     return (
       <div className='points'>
         <h3>It took you {tries} guesses with {matched.length} possible matches.</h3>
