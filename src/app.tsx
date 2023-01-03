@@ -1,5 +1,5 @@
 import React from "react"
-import Cards from "./components/cards"
+import GameBoard from "./components/game-board"
 
 export default function App(){
   return (
@@ -7,8 +7,8 @@ export default function App(){
       <div>
         <h1>Memory Challenge</h1>
       </div>
-      <div className='row'>
-          { Cards() }
+      <div>
+          { GameBoard() }
       </div>
     </>
   )
