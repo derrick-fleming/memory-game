@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useEffect, useState } from "react";
+import React, { SyntheticEvent, useState } from "react";
 import shapes from "../lib/shapes";
 import Card from "./card";
 import _ from 'lodash';
@@ -58,13 +58,24 @@ const GameBoard = function () {
 
   if (matched.length === shapes.length) {
     return (
-      <div>
-        <h1>It took you {tries} guesses with {matched.length} possible matches.</h1>
-        <h1>Your accuracy is: {Math.floor((matched.length / tries) * 100)}%</h1>
+      <div className='points'>
+        <h3>It took you {tries} guesses with {matched.length} possible matches.</h3>
+        <h3>Your accuracy is: {Math.floor((matched.length / tries) * 100)}%</h3>
       </div>
     )
   }
-  return cardTypes;
+  return (
+    <>
+      <div>
+        <h3 className='guesses'>
+          Number of Guesses: {tries}
+        </h3>
+      </div>
+      <div className='row'>
+        {cardTypes}
+      </div>
+    </>
+  );
 }
 
 export default GameBoard;

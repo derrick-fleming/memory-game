@@ -7,7 +7,7 @@ export default function App(){
       <div>
         <h1>Memory Challenge</h1>
       </div>
-      <div className='row'>
+      <div>
           { GameBoard() }
       </div>
     </>
