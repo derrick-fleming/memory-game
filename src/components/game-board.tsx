@@ -91,7 +91,7 @@ const GameBoard = function (props: {level: string}) {
           <h3>Your accuracy is: {Math.floor((matched.length / tries) * 100)}%</h3>
         </div>
         <div className="text-center mt-4">
-          <Link to='/dist/index.html' className="difficulty-button">
+          <Link to='/' className="difficulty-button">
             Return Home
           </Link>
         </div>

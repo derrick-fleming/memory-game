@@ -56,18 +56,6 @@ button {
   height: 75px;
 }
 
-.front {
-  z-index: 1;
-}
-
-.front:not(.matched-card > .flipper > .front):hover {
-  cursor: pointer;
-}
-
-.back {
-  transform: rotateY(180deg);
-}
-
 .card {
   position: absolute;
   -webkit-perspective: 1000;
@@ -84,7 +72,28 @@ button {
   border-radius: 1rem;
   border: 0;
   box-shadow: 0.2rem 0.2rem 0.5rem #0000004b;
-  transition: transform 0.2s ease;
+}
+
+.front {
+  z-index: 1;
+  transition: backround 1s ease-in-out;
+}
+
+.front:hover {
+  background:
+    radial-gradient(
+      circle,
+      #ffd6c7,
+      #ff99ac
+    );
+}
+
+.front:not(.matched-card > .flipper > .front):hover {
+  cursor: pointer;
+}
+
+.back {
+  transform: rotateY(180deg);
 }
 
 .flipped-card {
