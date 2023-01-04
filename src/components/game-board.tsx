@@ -2,16 +2,34 @@ import React, { SyntheticEvent, useState } from "react";
 import shapes from "../lib/shapes";
 import Card from "./card";
 import _ from 'lodash';
+import { Link } from 'react-router-dom';
 
-let cardShapes: string[] = [];
-shapes.forEach(shape => {
-  cardShapes.push(shape);
-  cardShapes.push(shape);
-})
 
-const shuffledCards = _.shuffle(cardShapes);
+let easyCardShapes: string[] = [];
+for (let i = 0; i < 4; i++) {
+  easyCardShapes.push(shapes[i]);
+  easyCardShapes.push(shapes[i]);
+}
+const easyShuffledCards = _.shuffle(easyCardShapes);
 
-const GameBoard = function () {
+let mediumCardShapes: string[] = [];
+for (let i = 0; i < 6; i++) {
+  mediumCardShapes.push(shapes[i]);
+  mediumCardShapes.push(shapes[i]);
+}
+
+const mediumShuffledCards = _.shuffle(mediumCardShapes);
+
+let hardCardShapes: string[] = [];
+for (let i = 0; i < 8; i++) {
+  hardCardShapes.push(shapes[i]);
+  hardCardShapes.push(shapes[i])
+}
+
+const hardShuffledCards = _.shuffle(hardCardShapes)
+
+const GameBoard = function (props: {level: string}) {
+
   const [flippedCount, setFlippedCount] = useState(0);
   const [firstCard, setFirstCard] = useState('');
   const [matched, setMatched] = useState([]);
@@ -43,25 +61,41 @@ const GameBoard = function () {
     }
   }
 
-  const cardTypes = shuffledCards.map((card, index) => {
+  const shuffledCards = props.level === 'easy'
+    ? easyShuffledCards
+    : props.level === 'medium'
+      ? mediumShuffledCards
+      : hardShuffledCards;
+
+  let cardTypes = shuffledCards.map((card, index) => {
 
     const matchedClass = matched.includes(card)
       ? 'matched-card'
       : '';
 
     return (
-      <div className={`flip-container ${matchedClass}`} key={index} onClick={handleFlip} id={card}>
-        <Card symbol={card} count={flippedCount}/>
+      <div key={index} className="col-4">
+        <div className={`flip-container ${matchedClass}`} onClick={handleFlip} id={card}>
+          <Card symbol={card} count={flippedCount} />
+        </div>
       </div>
+
       )
   })
 
-  if (matched.length === shapes.length) {
+  if (matched.length === shuffledCards.length / 2) {
     return (
-      <div className='points'>
-        <h3>It took you {tries} guesses with {matched.length} possible matches.</h3>
-        <h3>Your accuracy is: {Math.floor((matched.length / tries) * 100)}%</h3>
-      </div>
+      <>
+        <div className='text-center'>
+          <h3>It took you {tries} guesses with {matched.length} possible matches.</h3>
+          <h3>Your accuracy is: {Math.floor((matched.length / tries) * 100)}%</h3>
+        </div>
+        <div className="text-center mt-4">
+          <Link to='/' className="difficulty-button">
+            Return Home
+          </Link>
+        </div>
+      </>
     )
   }
   return (
@@ -71,9 +105,12 @@ const GameBoard = function () {
           Number of Guesses: {tries}
         </h3>
       </div>
-      <div className='row'>
-        {cardTypes}
+      <div className="game-board-container">
+        <div className='row'>
+          {cardTypes}
+        </div>
       </div>
+
     </>
   );
 }

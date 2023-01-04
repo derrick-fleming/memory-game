@@ -7,6 +7,19 @@ const shapes: string[] = [
   'house',
   'square',
   'minus',
+  'tree',
+  'book',
+  'dog',
+  'cat',
+  'diamond',
+  'pencil',
+  'moon',
+  'xmark',
+  'snowflake',
+  'bell',
+  'face-smile',
+  'crown',
+  'kite'
 ]
 
 export default shapes;

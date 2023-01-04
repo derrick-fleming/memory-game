@@ -15,6 +15,8 @@ html {
 
 #root {
   padding: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 h1 {
@@ -22,8 +24,13 @@ h1 {
   font-family: "Rammetto One", sans-serif;
 }
 
-h3 {
+h3,
+h2 {
   font-family: monospace;
+}
+
+button {
+  border: 0;
 }
 
 .hidden {
@@ -45,20 +52,8 @@ h3 {
 .flip-container,
 .front,
 .back {
-  width: 150px;
-  height: 150px;
-}
-
-.front {
-  z-index: 1;
-}
-
-.front:not(.matched-card > .flipper > .front):hover {
-  cursor: pointer;
-}
-
-.back {
-  transform: rotateY(180deg);
+  width: 75px;
+  height: 75px;
 }
 
 .card {
@@ -77,11 +72,36 @@ h3 {
   border-radius: 1rem;
   border: 0;
   box-shadow: 0.2rem 0.2rem 0.5rem #0000004b;
-  transition: transform 0.2s ease;
+}
+
+.front {
+  z-index: 1;
+  transition: backround 1s ease-in-out;
+}
+
+.front:hover {
+  background:
+    radial-gradient(
+      circle,
+      #ffd6c7,
+      #ff99ac
+    );
+}
+
+.front:not(.matched-card > .flipper > .front):hover {
+  cursor: pointer;
+}
+
+.back {
+  transform: rotateY(180deg);
 }
 
 .flipped-card {
   transform: rotateY(180deg);
+}
+
+.text-center {
+  text-align: center;
 }
 
 .matched-card {
@@ -94,6 +114,39 @@ h3 {
   padding-right: 4rem;
 }
 
-.points {
-  text-align: center;
+.difficulty-button {
+  text-decoration: none;
+  color: #000;
+  padding: 1.5rem;
+  margin: 1rem;
+  font-size: 1.2rem;
+  background-color: #f2c4b3;
+  box-shadow: 0.2rem 0.2rem 0.5rem #0000004b;
+  border-radius: 0.2rem;
+  font-family: monospace;
+  transition: background-color 0.3s ease-in, transform 0.3s ease-in;
+}
+
+.difficulty-button:hover {
+  cursor: pointer;
+  transform: scale(1.3);
+  background-color: #ffcebc;
+}
+
+@media screen and (min-width: 500px) {
+  .flip-container,
+  .front,
+  .back {
+    width: 125px;
+    height: 125px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .flip-container,
+  .front,
+  .back {
+    width: 150px;
+    height: 150px;
+  }
 }
