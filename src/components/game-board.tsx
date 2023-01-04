@@ -2,6 +2,7 @@ import React, { SyntheticEvent, useState } from "react";
 import shapes from "../lib/shapes";
 import Card from "./card";
 import _ from 'lodash';
+import { Link } from 'react-router-dom';
 
 
 let easyCardShapes: string[] = [];
@@ -28,6 +29,7 @@ for (let i = 0; i < 10; i++) {
 const hardShuffledCards = _.shuffle(hardCardShapes)
 
 const GameBoard = function (props: {level: string}) {
+
   const [flippedCount, setFlippedCount] = useState(0);
   const [firstCard, setFirstCard] = useState('');
   const [matched, setMatched] = useState([]);
@@ -65,15 +67,15 @@ const GameBoard = function (props: {level: string}) {
       ? mediumShuffledCards
       : hardShuffledCards;
 
-  const cardTypes = shuffledCards.map((card, index) => {
+  let cardTypes = shuffledCards.map((card, index) => {
 
     const matchedClass = matched.includes(card)
       ? 'matched-card'
       : '';
 
     return (
-      <div className="col-4">
-        <div className={`flip-container ${matchedClass}`} key={index} onClick={handleFlip} id={card}>
+      <div key={index} className="col-4">
+        <div className={`flip-container ${matchedClass}`} onClick={handleFlip} id={card}>
           <Card symbol={card} count={flippedCount} />
         </div>
       </div>
@@ -83,10 +85,17 @@ const GameBoard = function (props: {level: string}) {
 
   if (matched.length === shuffledCards.length / 2) {
     return (
-      <div className='points'>
-        <h3>It took you {tries} guesses with {matched.length} possible matches.</h3>
-        <h3>Your accuracy is: {Math.floor((matched.length / tries) * 100)}%</h3>
-      </div>
+      <>
+        <div className='text-center'>
+          <h3>It took you {tries} guesses with {matched.length} possible matches.</h3>
+          <h3>Your accuracy is: {Math.floor((matched.length / tries) * 100)}%</h3>
+        </div>
+        <div className="text-center mt-4">
+          <Link to='/dist/index.html' className="difficulty-button">
+            Return Home
+          </Link>
+        </div>
+      </>
     )
   }
   return (
