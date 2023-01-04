@@ -13,7 +13,7 @@ for (let i = 0; i < 4; i++) {
 const easyShuffledCards = _.shuffle(easyCardShapes);
 
 let mediumCardShapes: string[] = [];
-for (let i = 0; i < 8; i++) {
+for (let i = 0; i < 6; i++) {
   mediumCardShapes.push(shapes[i]);
   mediumCardShapes.push(shapes[i]);
 }
@@ -21,7 +21,7 @@ for (let i = 0; i < 8; i++) {
 const mediumShuffledCards = _.shuffle(mediumCardShapes);
 
 let hardCardShapes: string[] = [];
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 8; i++) {
   hardCardShapes.push(shapes[i]);
   hardCardShapes.push(shapes[i])
 }
